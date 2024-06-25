@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Каталог товаров</h1>
+<ul>
+    {% for product in object_list %}
+    <li>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <h3><a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a></h3>
+        <p>{{ product.price }}</p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

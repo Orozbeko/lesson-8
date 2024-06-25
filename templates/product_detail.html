@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>{{ object.name }}</h1>
+<img src="{{ object.image.url }}" alt="{{ object.name }}">
+<p>{{ object.description }}</p>
+<p>{{ object.price }}</p>
+
+<h2>Отзывы</h2>
+<ul>
+    {% for review in reviews %}
+    <li>
+        <h3>{{ review.author }}</h3>
+        <p>{{ review.text }}</p>
+        <p>{{ review.created_at }}</p>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2>Оставить отзыв</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ review_form.as_p }}
+    <button type="submit">Отправить</button>
+</form>
+{% endblock %}
